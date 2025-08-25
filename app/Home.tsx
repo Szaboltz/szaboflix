@@ -114,7 +114,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#000" },
-  loading: { flex: 1, justifyContent: "center", alignItems: "center" },
+  loading: { flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#000" },
   loadingText: { color: "#fff", fontSize: 18 },
   list: { padding: 10 },
   movieItem: { flex: 1, margin: 5, alignItems: "center" },
