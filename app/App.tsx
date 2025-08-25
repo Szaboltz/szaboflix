@@ -1,20 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'expo-router/entry';
+import { useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import useAuthStore from '../src/stores/authStore';
 
 export default function App() {
+  const router = useRouter();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  useEffect(() => {
+    router.replace(isAuthenticated ? '/home' : '/login');
+  }, [isAuthenticated, router]);
+
   return (
     <View style={styles.container}>
-      <Text>Testing Changes</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>Carregando...</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container: { 
+    flex: 1, 
+    backgroundColor: '#000', 
+    justifyContent: 'center', 
+    alignItems: 'center' 
   },
+  text: {
+    color: '#fff',
+    fontSize: 18,
+  }
 });
