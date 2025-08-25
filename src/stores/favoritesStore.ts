@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface FavoritesState {
-  favorites: number[]; // IDs dos filmes favoritados
+  favorites: number[];
   addFavorite: (movieId: number) => void;
   removeFavorite: (movieId: number) => void;
 }
@@ -19,7 +19,6 @@ const useFavoritesStore = create<FavoritesState>((set) => ({
   },
 }));
 
-// Carrega favoritos do AsyncStorage ao iniciar
 (async () => {
   const favoritesString = await AsyncStorage.getItem('favorites');
   useFavoritesStore.setState({ favorites: favoritesString ? JSON.parse(favoritesString) : [] });
